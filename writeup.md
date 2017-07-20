@@ -34,10 +34,12 @@ You're reading it!
 ### Kinematic Analysis
 #### 1. Run the forward_kinematics demo and evaluate the kr210.urdf.xacro file to perform kinematic analysis of Kuka KR210 robot and derive its DH parameters.
 
-# Evaluating the kr210.urdf.xacro file  
+##### Evaluating the kr210.urdf.xacro file  
+
+
 
 jointname | parent_link | child link  | x | y | z | roll | pitch | yow |  min | max |
---- | --- | --- | ---
+--- | --- | --- | --- |--- | --- | --- | --- | ---| --- | ---   
 joint_1 | base_link| link1 | 0 | 0 | 0.33 | 0 | 0 | 0 | -185 | 185
 joint_2 | link1 | link2 | 0.35 | 0 | 0.42 | 0 | 0 | 0 | -45 | 85
 joint_3 | link2 | link3 | 0 | 0 | 1.25 | 0 | 0 | 0 | -210 | 155-98
@@ -46,25 +48,33 @@ joint_5 | link4 | link5 | 0.54 | 0 | 0 | 0 | 0 | 0 | -125 | 125
 joint_6 | link5 | link6 | 0.193 | 0 | 0 | 0 | 0 | 0 | -350 | 350
 gripper_joint| link6 | gripper_link| 0.11| 0 | 0 | 0 |  0 | 0 | |
 
-# obtaining the DH parameter
+##### obtaining the DH parameters
 
 αi-1 is the angle between zi-1 and zi.  
 ai-1 is the distance zi-1 to zi measured along the x1_axis.  
 di is the distance between xi-1 and xi.  
-θi is the angle between xi-1 to xi.
+θi is the angle between xi-1 to xi.  
 
 ![alt text][image1]
 
-DHparameter
+##### the DHparameter table
 
-i | αi-1 | ai-1 | di | θi
+i | $\alpha_{i-1}$| $a_{i-1}$ | $d_i$ | $\theta_i$
 --- | --- | --- | ---|---
-1 | `highlight` | **bold** | .41
-2 | a | b | c
-3 | *italic* | text | 403
-4 | 2 | 3 | abcd
+1 | 0     | 0      | 0.75 | q1
+2 | -pi/2 | 0.35   | 0    | q2-pi/2
+3 |  0    | 1.25   | 0    | q3
+4 | -pi/2 | -0.054 | 1.50 | q4
+5 |  pi/2 | 0      | 0    | q5
+6 | -pi/2 | 0      | 0    | q6
+6 | 0     | 0      | 0.303| 0
 
 #### 2. Using the DH parameter table you derived earlier, create individual transformation matrices about each joint. In addition, also generate a generalized homogeneous transform between base_link and gripper_link using only end-effector(gripper) pose.
+
+ ##### homogeneous transforms
+
+ $_{i}^{i-1}T$ = $R_x(α_{i-1}) D_x(a_{i-1}) R_z(θ_{i}) D_z(d_{i})$
+
 
 Here's | A | Snappy | Table
 --- | --- | --- | ---
